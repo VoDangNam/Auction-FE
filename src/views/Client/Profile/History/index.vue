@@ -27,6 +27,91 @@
     </div>
   </div>
   <div class="row">
+    <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+      <div class="card p-0">
+        <div class="badge p-0">
+          <img src="../../../../assets/img/user_test.jpg" class="img-auction" alt="">
+          <div class="badge-live d-flex align-items-center gap-2"><i
+              class="fa-solid fa-circle fa-sm fw-bold text-white"></i>
+            <p class="m-0  fw-bold text-white">LIVE</p>
+          </div>
+          <div class="badge-success1 d-flex align-items-center gap-2">12:35</div>
+          <div class="badge-success2 d-flex align-items-center gap-2">12:35</div>
+
+        </div>
+
+        <div class="card-body">
+          <h5 class="fw-bold text-success">Modern Asian Expressions</h5>
+          <p class="card-text">Contemporary Asian artists redefining tradition</p>
+          <div class="d-flex justify-content-between">
+            <p class="m-0 text-secondary">Current product</p>
+            <p class="m-0 text-secondary">High Bid</p>
+          </div>
+          <div class="d-flex justify-content-between">
+            <p class="fw-bold">Product 7 of 10</p>
+            <p class="fw-bold">$12M</p>
+          </div>
+          <button class="btn btn-success w-100 fw-bold">Join ArtAuction</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+      <div class="card p-0">
+        <div class="badge p-0">
+          <img src="../../../../assets/img/user_test.jpg" class="img-auction" alt="">
+          <div class="badge-live d-flex align-items-center gap-2"><i
+              class="fa-solid fa-circle fa-sm fw-bold text-white"></i>
+            <p class="m-0  fw-bold text-white">LIVE</p>
+          </div>
+          <div class="badge-success1 d-flex align-items-center gap-2">12:35</div>
+          <div class="badge-success2 d-flex align-items-center gap-2">12:35</div>
+
+        </div>
+
+        <div class="card-body">
+          <h5 class="fw-bold text-success">Modern Asian Expressions</h5>
+          <p class="card-text">Contemporary Asian artists redefining tradition</p>
+          <div class="d-flex justify-content-between">
+            <p class="m-0 text-secondary">Current product</p>
+            <p class="m-0 text-secondary">High Bid</p>
+          </div>
+          <div class="d-flex justify-content-between">
+            <p class="fw-bold">Product 7 of 10</p>
+            <p class="fw-bold">$12M</p>
+          </div>
+          <button class="btn btn-success w-100 fw-bold">Join ArtAuction</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+      <div class="card p-0">
+        <div class="badge p-0">
+          <img src="../../../../assets/img/user_test.jpg" class="img-auction" alt="">
+          <div class="badge-live d-flex align-items-center gap-2"><i
+              class="fa-solid fa-circle fa-sm fw-bold text-white"></i>
+            <p class="m-0  fw-bold text-white">LIVE</p>
+          </div>
+          <div class="badge-success1 d-flex align-items-center gap-2">12:35</div>
+          <div class="badge-success2 d-flex align-items-center gap-2">12:35</div>
+
+        </div>
+
+        <div class="card-body">
+          <h5 class="fw-bold text-success">Modern Asian Expressions</h5>
+          <p class="card-text">Contemporary Asian artists redefining tradition</p>
+          <div class="d-flex justify-content-between">
+            <p class="m-0 text-secondary">Current product</p>
+            <p class="m-0 text-secondary">High Bid</p>
+          </div>
+          <div class="d-flex justify-content-between">
+            <p class="fw-bold">Product 7 of 10</p>
+            <p class="fw-bold">$12M</p>
+          </div>
+          <button class="btn btn-success w-100 fw-bold">Join ArtAuction</button>
+        </div>
+      </div>
+    </div>
+
     <div class="col-lg-12 col-md-12 col-sm-12">
       <div class="card mb-3">
         <div class="card-body">
@@ -49,7 +134,7 @@
                   <div class="col-lg-3 col-md-6 col-sm-12 d-flex align-items-center">
                     <img src="https://picsum.photos/200/300" class="card-img-top" style="height: 120px;" alt="...">
                   </div>
-                  
+
                   <div class="col-lg-9">
                     <div class="row mt-3">
                       <div

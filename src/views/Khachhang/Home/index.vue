@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-lg-12">
         <!-- <p>home</p> -->
-p
+trước đn
       </div>
     </div>
   </div>

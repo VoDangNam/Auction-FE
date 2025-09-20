@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';  // cài vue-router: npm install vue-router@next --save
 
 // import checkAdmin from "./checkAdmin";
-// import checkUser from "./checkUser";
+import checkUser from "./checkUser";
 
 const routes = [
   {
@@ -22,22 +22,19 @@ const routes = [
     path: '/',
     name: 'home',
     component: () => import('../views/Khachhang/Home/index.vue'),
-    // meta: { layout: "client" },
-    // beforeEnter: checkUser,
+    meta: { layout: "client" },
   },
   {
     path: '/about-us',
     name: 'about_us',
     component: () => import('../views/Khachhang/AboutUs/index.vue'),
-    // meta: { layout: "client" },
-    // beforeEnter: checkUser,
+    meta: { layout: "client" },
   },
   {
     path: '/help',
     name: 'help',
     component: () => import('../views/Khachhang/Help/index.vue'),
-    // meta: { layout: "client" },
-    // beforeEnter: checkUser,
+    meta: { layout: "client" },
   },
 
   // sau login - phải checkUser
@@ -46,21 +43,21 @@ const routes = [
     name: 'home_client',
     component: () => import('../views/Client/Home/index.vue'),
     // meta: { layout: "client" },
-    // beforeEnter: checkUser,
+    beforeEnter: checkUser,
   },
   {
     path: '/client/auction',
     name: 'auction',
     component: () => import('../views/Client/Auction/index.vue'),
-    // meta: { layout: "client" },
-    // beforeEnter: checkUser,
+    meta: { layout: "client" },
+    beforeEnter: checkUser,
   },
   {
     path: '/client/profile',
     name: 'profile',
     component: () => import('../views/Client/Profile/index.vue'),
     meta: { layout: "client" },
-
+    beforeEnter: checkUser,
     children: [
       {
         path: '',
@@ -87,7 +84,6 @@ const routes = [
         component: () => import('../views/Client/Profile/EWallet/index.vue')
       },
     ]
-    // beforeEnter: checkUser,
   },
 
 

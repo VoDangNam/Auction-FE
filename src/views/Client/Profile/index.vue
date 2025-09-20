@@ -7,7 +7,7 @@
           <div class="card-body p-4">
             <div class="row">
               <div
-                class="col-lg-4 col-md-12 d-flex flex-column justify-content-center align-items-center mb-lg-0 mb-xs-4">
+                class="col-lg-4 col-md-12 d-flex flex-column justify-content-center align-items-center mb-lg-0 mb-4 ">
                 <img src="../../../assets/img/user_test.jpg" class="avatar mb-4" alt="">
 
                 <button class="btn btn-outline-success w-75 text-nowrap mt-auto">Edit Profile</button>
@@ -43,7 +43,7 @@
           </div>
         </div>
       </div>
-      <!--  -->
+      <!-- 4 khối -->
       <div class="col-lg-5 col-md-12 mb-4">
         <div class="row d-flex">
           <div class="col-lg-12 mb-3">
@@ -79,7 +79,7 @@
               </div>
             </div>
           </div>
-          <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
+          <div class="col-lg-6 col-md-6 col-sm-12 mb-md-0 mb-3">
             <div class="card bg-success text-white">
               <div class="card-body d-flex justify-content-between align-items-center">
                 <div class="">
@@ -92,7 +92,7 @@
               </div>
             </div>
           </div>
-          <div class="col-lg-6 col-md-6 col-sm-12  mb-3">
+          <div class="col-lg-6 col-md-6 col-sm-12  mb-md-0 mb-3">
             <div class="card bg-success text-white">
               <div class="card-body d-flex justify-content-between align-items-center">
                 <div class="">
@@ -118,7 +118,20 @@
 <script>
 import SubMenuProfile from '@/components/SubMenuProfile.vue'
 export default {
-  components: { SubMenuProfile }
+  components: { SubMenuProfile },
+
+  data() {
+    return {
+
+    }
+  },
+
+  mounted() {
+  },
+
+  methods: {
+
+  }
 }
 </script>
 <style></style>

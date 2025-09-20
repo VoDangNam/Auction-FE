@@ -13,22 +13,22 @@
 
     <!-- Nội dung chính -->
     <div class="container container-acc">
-      <div class="row d-flex justify-content-around">
-        <div class="col-lg-5 col-md-5 d-flex flex-column">
+      <div class="row d-flex justify-content-around align-items-center  w-100">
+        <div class="col-lg-5 col-md-4 col-sm-12 d-flex flex-column d-none d-md-inline">
           <div class="d-flex gap-3 align-items-center mb-auto">
             <img src="../../../assets/img/Logo_AA.png" class="logoLogin" alt="">
             <h3 class="fw-bold m-0"><span class="text-success fw-bold ">Art</span>Auction</h3>
           </div>
-          <div class="py-5 my-5">
+          <div class="py-lg-5 my-5">
             <h1 class="text-acc pb-2">Let’s get started !</h1>
             <div class="border border-3 w-75 border-success rounded mb-5"></div>
-            <p class="left mb-5  py-3">Becoming a member is the first step toward owning pieces that truly
+            <p class="left mb-lg-5 py-3">Becoming a member is the first step toward owning pieces that truly
               inspire, opening the
               door to
               new experiences and meaningful connections.</p>
           </div>
         </div>
-        <div class="col-lg-5 col-md-7">
+        <div class="col-lg-5 col-md-8 col-sm-12 ">
           <div class="card card-acc">
             <div class="card-body p-5">
               <!-- form -->
@@ -37,28 +37,28 @@
                 <div class="d-flex flex-column gap-3">
                   <!-- Username -->
                   <div class="group-input col-lg-12 col-md-12">
-                    <input type="text" class="form-control" id="username" v-model="user.username" required>
+                    <input v-model="tai_khoan.username" type="text" class="form-control" id="username" required>
                     <label for="username">Username</label>
                     <i class="bi bi-person fa-xl text-success"></i>
                   </div>
                   <!-- Email -->
                   <div class="group-input col-lg-12 col-md-12">
-                    <input type="email" class="form-control" id="email" v-model="user.email" required>
+                    <input v-model="tai_khoan.email" type="email" class="form-control" id="email" required>
                     <label for="email">Email</label>
                     <i class="bi bi-envelope fa-xl text-success"></i>
                   </div>
                   <!-- Password -->
                   <div class="group-input col-lg-12 col-md-12">
-                    <input :type="showPassword ? 'text' : 'password'" class="form-control" id="password"
-                      v-model="user.password" required>
+                    <input v-model="tai_khoan.password" :type="showPassword ? 'text' : 'password'" class="form-control"
+                      id="password" required>
                     <label for="password">Password</label>
                     <i class="bi fa-xl" :class="showPassword ? 'bi-eye' : 'bi-eye-slash'" @click="togglePassword"
                       style="cursor: pointer;"></i>
                   </div>
                   <!-- RePassword -->
                   <div class="group-input col-lg-12 col-md-12">
-                    <input :type="showRePassword ? 'text' : 'password'" class="form-control" id="repassword"
-                       required>
+                    <input v-model="tai_khoan.confirmPassword" :type="showRePassword ? 'text' : 'password'"
+                      class="form-control" id="repassword" required>
                     <label for="repassword">RePassword</label>
                     <i class="bi fa-xl" :class="showRePassword ? 'bi-eye' : 'bi-eye-slash'" @click="toggleRePassword"
                       style="cursor: pointer;"></i>
@@ -116,15 +116,35 @@ export default {
       showPassword: false,
       showRePassword: false,
       acceptTerms: false,
-      user:{
-
-      }
+      tai_khoan: {},
     }
   },
   mounted() {
-    // Component mounted
+
   },
   methods: {
+    DangKy() {
+      axios.post('http://localhost:8081/register', this.tai_khoan)
+        .then(response => {
+          console.log(response.data);
+          // this.$toast.success(res.data.message);
+          this.$toast.success("Registration successful!");
+
+          // alert("Registration successful!");
+          this.$router.push('/login');
+        })
+        .catch(error => {
+          this.$toast.error("Registration failed. Please try again.");
+
+          console.error(error);
+          // alert("Registration failed. Please try again.");
+        });
+    },
+
+    registerWithGoogle() {
+      console.log('Register with Google clicked');
+    },
+
     togglePassword() {
       this.showPassword = !this.showPassword;
     },
@@ -132,27 +152,6 @@ export default {
     toggleRePassword() {
       this.showRePassword = !this.showRePassword;
     },
-
-    DangKy() {
-
-      // Call API to register user
-      axios.post('http://localhost:8081/register', this.user)
-        .then(response => {
-          console.log(response.data);
-          alert("Registration successful!");
-          this.$router.push('/login'); // Redirect to login page after successful registration
-        })
-        .catch(error => {
-          console.error(error);
-          alert("Registration failed. Please try again.");
-        });
-    },
-
-    registerWithGoogle() {
-      // Google Register method
-      console.log('Register with Google clicked');
-      // TODO: Implement Google OAuth
-    }
   }
 }
 </script>

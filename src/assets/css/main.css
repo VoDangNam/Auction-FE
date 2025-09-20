@@ -6,6 +6,8 @@ body,
   width: 100%;
   height: 100%;
   background-color: #F0F9F9;
+  font-family: 'Montserrat', sans-serif;
+
 }
 
 #app {
@@ -49,8 +51,37 @@ a,
 .imgLogo {
   display: inline-block;
   height: 40px;
-
 }
+
+.img-avatar{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--aa-success);
+}
+
+.dropdown-menu {
+  min-width: 250px !important;
+  border-radius: 12px !important;
+  padding: 0;
+}
+
+.dropdown-item {
+  transition: background-color 0.2s ease;
+  border: none;
+  border-radius: 8px !important;
+}
+
+.dropdown-item:hover {
+  background-color: var(--aa-accent) !important;
+}
+
+.dropdown-toggle-no-caret::after {
+  display: none !important;
+}
+
+
 
 .imgLogoFooter {
   display: inline-block;
