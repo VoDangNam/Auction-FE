@@ -7,10 +7,15 @@
           <div class="card-body p-4">
             <div class="row">
               <div
-                class="col-lg-4 col-md-12 d-flex flex-column justify-content-center align-items-center mb-lg-0 mb-4 ">
-                <img src="../../../assets/img/user_test.jpg" class="avatar mb-4" alt="">
 
-                <button class="btn btn-outline-success w-75 text-nowrap mt-auto">Edit Profile</button>
+                class="col-lg-4 col-md-12 d-flex flex-column justify-content-center align-items-center mb-lg-0 mb-xs-4"
+              >
+                <img src="../../../assets/img/user_test.jpg" class="avatar mb-4" alt="" />
+
+
+                <button class="btn btn-outline-success w-75 text-nowrap mt-auto">
+                  Edit Profile
+                </button>
               </div>
 
               <div class="col-lg-8 col-md-12 d-flex flex-column">
@@ -37,7 +42,6 @@
                     <p class="m-0 text-success">VietNam</p>
                   </div>
                 </div>
-
               </div>
             </div>
           </div>
@@ -92,7 +96,9 @@
               </div>
             </div>
           </div>
+
           <div class="col-lg-6 col-md-6 col-sm-12  mb-md-0 mb-3">
+
             <div class="card bg-success text-white">
               <div class="card-body d-flex justify-content-between align-items-center">
                 <div class="">
@@ -111,11 +117,11 @@
     <div class="row">
       <SubMenuProfile />
     </div>
-
   </div>
   <!-- menu phụ + vùng gắn trang con -->
 </template>
 <script>
+
 import SubMenuProfile from '@/components/SubMenuProfile.vue'
 import axios from 'axios';
 export default {
@@ -152,5 +158,6 @@ export default {
     },
   }
 }
+
 </script>
 <style></style>
