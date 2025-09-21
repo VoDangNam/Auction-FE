@@ -155,6 +155,7 @@ export default {
 </script>
 
 <template>
+
   <div class="content container">
     <!-- ========== Thanh search + filter + tag ========== -->
     <div class="row section1 mb-4" style="margin-top: 50px">
@@ -312,6 +313,7 @@ export default {
         </div>
       </div>
     </div>
+
   </div>
 </template>
 

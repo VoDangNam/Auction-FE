@@ -7,9 +7,11 @@
           <div class="card-body p-4">
             <div class="row">
               <div
+
                 class="col-lg-4 col-md-12 d-flex flex-column justify-content-center align-items-center mb-lg-0 mb-xs-4"
               >
                 <img src="../../../assets/img/user_test.jpg" class="avatar mb-4" alt="" />
+
 
                 <button class="btn btn-outline-success w-75 text-nowrap mt-auto">
                   Edit Profile
@@ -17,15 +19,15 @@
               </div>
 
               <div class="col-lg-8 col-md-12 d-flex flex-column">
-                <h4 class="fw-bold text-success mt-auto pb-3">Trần Hải Yêns</h4>
+                <h4 class="fw-bold text-success mt-auto pb-3">{{ userData[0]?.user?.username }}</h4>
                 <div class="mt-auto d-flex flex-column gap-3">
                   <div class="d-flex justify-content-between align-items-center">
                     <p class="m-0 fw-bold">Phone</p>
-                    <p class="m-0 text-success">+84 123456789</p>
+                    <p class="m-0 text-success">{{ userData[0]?.user?.username }}</p>
                   </div>
                   <div class="d-flex justify-content-between align-items-center">
                     <p class="m-0 fw-bold">Email</p>
-                    <p class="m-0 text-success">a123@gmail.com</p>
+                    <p class="m-0 text-success">{{ userData[0]?.user?.email }}</p>
                   </div>
                   <div class="d-flex justify-content-between align-items-center">
                     <p class="m-0 fw-bold">Citizen identification</p>
@@ -45,7 +47,7 @@
           </div>
         </div>
       </div>
-      <!--  -->
+      <!-- 4 khối -->
       <div class="col-lg-5 col-md-12 mb-4">
         <div class="row d-flex">
           <div class="col-lg-12 mb-3">
@@ -81,7 +83,7 @@
               </div>
             </div>
           </div>
-          <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
+          <div class="col-lg-6 col-md-6 col-sm-12 mb-md-0 mb-3">
             <div class="card bg-success text-white">
               <div class="card-body d-flex justify-content-between align-items-center">
                 <div class="">
@@ -94,7 +96,9 @@
               </div>
             </div>
           </div>
-          <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
+
+          <div class="col-lg-6 col-md-6 col-sm-12  mb-md-0 mb-3">
+
             <div class="card bg-success text-white">
               <div class="card-body d-flex justify-content-between align-items-center">
                 <div class="">
@@ -117,9 +121,43 @@
   <!-- menu phụ + vùng gắn trang con -->
 </template>
 <script>
-import SubMenuProfile from "@/components/SubMenuProfile.vue";
+
+import SubMenuProfile from '@/components/SubMenuProfile.vue'
+import axios from 'axios';
 export default {
   components: { SubMenuProfile },
-};
+
+  data() {
+    return {
+      userData: {},
+
+    }
+  },
+
+  mounted() {
+    this.loadUserData();
+
+  },
+
+  methods: {
+    loadUserData() {
+      axios
+        .get('http://localhost:8081/getAuctionRooms/u001', {
+          // headers: {
+          //     Authorization: 'Bearer ' + localStorage.getItem("key_admin")
+          // }
+        })
+        .then((res) => {
+          this.userData = res.data;
+          // console.log(this.userData);
+
+        })
+         .catch((err) => {
+        console.error(err);
+      });
+    },
+  }
+}
+
 </script>
 <style></style>

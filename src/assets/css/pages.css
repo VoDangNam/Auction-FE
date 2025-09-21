@@ -227,7 +227,9 @@
 }
 
 .group-input input:focus + label,
-.group-input input:valid + label {
+.group-input input:valid + label,
+/* .group-input input:not(:placeholder-shown) + label, */
+.group-input input:-webkit-autofill + label {
   top: -15px;
   left: 0px;
   font-size: 14px;
@@ -235,7 +237,20 @@
   background: transparent;
   transform: translateY(0);
   /* font-weight: bold; */
+  transition: all 0.3s ease;
 }
+
+.group-input input:not(:focus):not(:valid):placeholder-shown + label {
+  top: 50%;
+  left: 0px;
+  font-size: 16px;
+  color: #777;
+  background: transparent;
+  transform: translateY(-50%);
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
 
 .group-input i {
   position: absolute;
@@ -382,6 +397,70 @@
 }
 
 /* ===========================================
+
+   CSS CHO MANAGEMENT - SUBMENU TRANG CLIENT
+   =========================================== */
+.img-square {
+  width: 100%;
+  aspect-ratio: 3/2; /* height = 2/3 width */
+  object-fit: cover;
+}
+
+
+
+
+/* ===========================================
+   CSS CHO HISTORY - SUBMENU TRANG CLIENT
+   =========================================== */
+
+.img-auction {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+}
+.badge{
+  position: relative;
+
+}
+.badge-live {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #C50000;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 5px 18px;
+  border-radius: 8px;
+  display: inline-flex;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+.badge-success1 {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: var(--aa-success);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 5px 18px;
+  border-radius: 8px;
+  display: inline-flex;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+.badge-success2 {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: var(--aa-success);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 5px 18px;
+  border-radius: 8px;
+  display: inline-flex;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+
    CSS CHO HOME Client - Home/index.vue
    =========================================== */
 
@@ -727,4 +806,5 @@ h2 {
 }
 .pay-status-inv {
   font-size: 12px;
+
 }

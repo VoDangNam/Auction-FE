@@ -1,8 +1,8 @@
 <template>
   <!-- menu phụ -->
-  <div class="col-lg-3 col-md-12 submenu text-white d-flex flex-column align-items-center mb-lg-3">
+  <div class="col-lg-3 col-md-12 submenu text-white d-flex flex-column align-items-center mb-3">
     <div class="card w-100">
-      <div class="card-body">
+      <div class="card-body py-lg-3 py-sm-1">
         <div class="row ">
           <div class="col-lg-12 col-md-3 col-sm-3 col-xs-3 mb-lg-2">
             <router-link to="/client/profile/art-management"
@@ -37,10 +37,6 @@
             </router-link>
           </div>
         </div>
-
-
-
-
       </div>
     </div>
   </div>

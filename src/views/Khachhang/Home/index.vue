@@ -157,6 +157,7 @@ export default {
     class="section4 d-flex justify-content-center align-items-center position-relative overflow-hidden"
   >
     <div class="row">
+
       <div class="col col-md-6">
         <img
           src="/src/assets/img/flower.png"
@@ -172,6 +173,7 @@ export default {
             blend, evoking deep emotions in the viewer.
           </p>
         </div>
+
       </div>
     </div>
   </section>
