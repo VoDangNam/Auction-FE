@@ -27,7 +27,49 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+    <template v-for="(v, k) in list" :key="k">
+      <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+        <div class="card p-0">
+          <div class="badge p-0">
+            <img src="../../../../assets/img/user_test.jpg" class="img-auction" alt="">
+            <div class="badge-live d-flex align-items-center gap-2"><i
+                class="fa-solid fa-circle fa-sm fw-bold text-white"></i>
+              <p class="m-0  fw-bold text-white">LIVE</p>
+            </div>
+            <div class="badge-success1 d-flex align-items-center gap-2">12:35</div>
+            <div class="badge-success2 d-flex align-items-center gap-2">12:35</div>
+
+          </div>
+
+          <div class="card-body">
+            <h5 class="fw-bold text-success">{{ v.roomName }}</h5>
+            <p class="card-text">{{ v.decription }}</p>
+            <div class="d-flex justify-content-between">
+              <p class="m-0 text-secondary">Current product</p>
+              <p class="m-0 text-secondary">High Bid</p>
+            </div>
+            <div class="d-flex justify-content-between">
+              <p class="fw-bold">Product 7 of {{ v.numberOfArtwork }}</p>
+              <p class="fw-bold">$ {{ v.currentPrice }}</p>
+            </div>
+            <button class="btn btn-success w-100 fw-bold">Join ArtAuction</button>
+          </div>
+        </div>
+      </div>
+    </template>
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
       <div class="card p-0">
         <div class="badge p-0">
           <img src="../../../../assets/img/user_test.jpg" class="img-auction" alt="">
@@ -54,65 +96,10 @@
           <button class="btn btn-success w-100 fw-bold">Join ArtAuction</button>
         </div>
       </div>
-    </div>
-    <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
-      <div class="card p-0">
-        <div class="badge p-0">
-          <img src="../../../../assets/img/user_test.jpg" class="img-auction" alt="">
-          <div class="badge-live d-flex align-items-center gap-2"><i
-              class="fa-solid fa-circle fa-sm fw-bold text-white"></i>
-            <p class="m-0  fw-bold text-white">LIVE</p>
-          </div>
-          <div class="badge-success1 d-flex align-items-center gap-2">12:35</div>
-          <div class="badge-success2 d-flex align-items-center gap-2">12:35</div>
+    </div> -->
 
-        </div>
-
-        <div class="card-body">
-          <h5 class="fw-bold text-success">Modern Asian Expressions</h5>
-          <p class="card-text">Contemporary Asian artists redefining tradition</p>
-          <div class="d-flex justify-content-between">
-            <p class="m-0 text-secondary">Current product</p>
-            <p class="m-0 text-secondary">High Bid</p>
-          </div>
-          <div class="d-flex justify-content-between">
-            <p class="fw-bold">Product 7 of 10</p>
-            <p class="fw-bold">$12M</p>
-          </div>
-          <button class="btn btn-success w-100 fw-bold">Join ArtAuction</button>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
-      <div class="card p-0">
-        <div class="badge p-0">
-          <img src="../../../../assets/img/user_test.jpg" class="img-auction" alt="">
-          <div class="badge-live d-flex align-items-center gap-2"><i
-              class="fa-solid fa-circle fa-sm fw-bold text-white"></i>
-            <p class="m-0  fw-bold text-white">LIVE</p>
-          </div>
-          <div class="badge-success1 d-flex align-items-center gap-2">12:35</div>
-          <div class="badge-success2 d-flex align-items-center gap-2">12:35</div>
-
-        </div>
-
-        <div class="card-body">
-          <h5 class="fw-bold text-success">Modern Asian Expressions</h5>
-          <p class="card-text">Contemporary Asian artists redefining tradition</p>
-          <div class="d-flex justify-content-between">
-            <p class="m-0 text-secondary">Current product</p>
-            <p class="m-0 text-secondary">High Bid</p>
-          </div>
-          <div class="d-flex justify-content-between">
-            <p class="fw-bold">Product 7 of 10</p>
-            <p class="fw-bold">$12M</p>
-          </div>
-          <button class="btn btn-success w-100 fw-bold">Join ArtAuction</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-lg-12 col-md-12 col-sm-12">
+    <!-- mẫu 02 -->
+    <!-- <div class="col-lg-12 col-md-12 col-sm-12">
       <div class="card mb-3">
         <div class="card-body">
           <div class="row mb-3 gap-2">
@@ -243,12 +230,6 @@
                         <p class="m-0 ">24</p>
                       </div>
                     </div>
-
-                    <!-- <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                      of the card's
-                      content.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
                   </div>
                 </div>
               </div>
@@ -259,19 +240,44 @@
         </div>
 
       </div>
-    </div>
-
-
-
+    </div> -->
 
   </div>
 
 </template>
 <script>
-import { Alert } from 'bootstrap/dist/js/bootstrap.bundle.min';
+import axios from 'axios';
+
+// import { Alert } from 'bootstrap/dist/js/bootstrap.bundle.min';
 
 export default {
+  data() {
+    return {
+      list: {},
+    }
+  },
+  mounted() {
+    this.loadData();
+  },
+  methods: {
+    loadData() {
+      axios
+        .get('http://localhost:8081/getAuctionRooms/u001', {
+          // headers: {
+          //     Authorization: 'Bearer ' + localStorage.getItem("key_admin")
+          // }
+        })
+        .then((res) => {
+          this.list = res.data;
+          console.log(list);
 
+        })
+         .catch((err) => {
+        console.error(err);
+      });
+    },
+
+  }
 }
 </script>
 <style></style>

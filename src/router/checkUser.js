@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default function (from, to, next) {
   axios
-    .get("http://localhost:8081/checkUser", {
+    .get("http://localhost:8081/getEmailAndUsernameFromToken", {
       headers: {
         Authorization: 'Bearer ' + localStorage.getItem("authToken")
       }

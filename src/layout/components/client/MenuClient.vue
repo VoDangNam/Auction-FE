@@ -68,9 +68,9 @@
                         <img src="../../../assets/img/user_test.jpg" class="img-avatar" alt="">
                         <div class="d-flex align-content-center flex-column">
                           <p class="fw-bold text-success mb-1">
-                            {{ user.email }}
+                            {{ user.username }}
                           </p>
-                          <p class="text-success m-0">User</p>
+                          <p class="text-success m-0">{{ user.email }}</p>
                         </div>
 
                       </div>
@@ -146,7 +146,7 @@ export default {
       }
 
       axios
-        .get("http://localhost:8081/checkUser", {
+        .get("http://localhost:8081/getEmailAndUsernameFromToken", {
           headers: {
             Authorization: 'Bearer ' + token
           }
