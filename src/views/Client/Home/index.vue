@@ -1,314 +1,183 @@
-<script>
-import axios from "axios";
-
-// State
-// const featuredList = ref([]); // dữ liệu tác phẩm nổi bật
-// const searchQuery = ref(""); // nội dung tìm kiếm
-// const loading = ref(false);
-// const error = ref(null);
-
-// Gọi API khi component load
-// onMounted(async () => {
-//   try {
-//     loading.value = true;
-//     const res = await getFeatured();
-//     featuredList.value = res.data; // dữ liệu từ API
-//   } catch (err) {
-//     error.value = err.message;
-//   } finally {
-//     loading.value = false;
-//   }
-// });
-
-// const getImageUrl = (url) => {
-//   return url && url !== "" ? url : "/placeholder.png";
-// };
-
-// Lọc theo ô tìm kiếm
-// const filteredFeatured = computed(() => {
-//   if (!searchQuery.value) return featuredList.value;
-//   return featuredList.value.filter((item) =>
-//     item.title.toLowerCase().includes(searchQuery.value.toLowerCase())
-//   );
-// });
-
-export default {
-  data() {
-    return {
-      featuredList: [],
-      searchQuery: "",
-      loading: false,
-      error: null,
-      tags: ["Phong cảnh", "Chân dung", "Dân gian"],
-      selectedTag: null,
-      // Dữ liệu tĩnh cho phòng đấu giá hot
-      hotAuctions: [
-        {
-          id: 1,
-          image: "/src/assets/img/3.png",
-          status: "LIVE",
-          time: "12:35",
-          bidders: 85,
-          title: "Modern Asian Expressions",
-          description: "Contemporary Asian artists redefining tradition",
-          currentProduct: "7 of 10",
-          highBid: "$12M",
-          buttonText: "Join Auction",
-          buttonClass: "btn-outline-success",
-          badgeClass: "bg-danger",
-        },
-        {
-          id: 2,
-          image: "/src/assets/img/3.png",
-          status: "STARTS IN 1H",
-          time: "12:35",
-          bidders: 85,
-          title: "Classic European Art",
-          description: "Masterpieces from the Renaissance era",
-          currentProduct: "3 of 8",
-          highBid: "$2.5M - $3.8M",
-          buttonText: "View Catalog",
-          buttonClass: "btn-success",
-          badgeClass: "bg-warning text-dark",
-        },
-        {
-          id: 3,
-          image: "/src/assets/img/3.png",
-          status: "LIVE",
-          time: "12:35",
-          bidders: 85,
-          title: "Vietnamese Folk Art",
-          description: "Traditional art from Vietnam",
-          currentProduct: "5 of 12",
-          highBid: "$5M",
-          buttonText: "Join Auction",
-          buttonClass: "btn-outline-success",
-          badgeClass: "bg-danger",
-        },
-        {
-          id: 4,
-          image: "/src/assets/img/3.png",
-          status: "STARTS IN 1H",
-          time: "12:35",
-          bidders: 85,
-          title: "Abstract Modernism",
-          description: "Exploring modern abstract forms",
-          currentProduct: "2 of 6",
-          highBid: "$2.5M - $3.8M",
-          buttonText: "View Catalog",
-          buttonClass: "btn-success",
-          badgeClass: "bg-warning text-dark",
-        },
-      ],
-    };
-  },
-
-  computed: {
-    // lọc theo ô tìm kiếm và tag
-    filteredFeatured() {
-      let list = this.featuredList;
-      if (this.selectedTag) {
-        list = list.filter((item) => item.tag === this.selectedTag);
-      }
-      if (this.searchQuery) {
-        list = list.filter((item) =>
-          item.title.toLowerCase().includes(this.searchQuery.toLowerCase())
-        );
-      }
-      return list;
-    },
-  },
-
-  methods: {
-    getImageUrl(url) {
-      return url && url !== "" ? url : "/placeholder.png";
-    },
-
-    fetchFeatured() {
-      this.loading = true;
-      axios
-        .get("http://localhost:8081/featured", {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("key_admin"),
-          },
-        })
-        .then((res) => {
-          this.featuredList = res.data;
-        })
-        .catch((err) => {
-          this.error = err.message;
-        })
-        .finally(() => {
-          this.loading = false;
-        });
-    },
-
-    selectTag(tag) {
-      this.selectedTag = this.selectedTag === tag ? null : tag;
-    },
-  },
-
-  mounted() {
-    this.fetchFeatured();
-  },
-};
-</script>
-
 <template>
 
-  <div class="content container">
+  <div class="container mt-3">
     <!-- ========== Thanh search + filter + tag ========== -->
-    <div class="row section1 mb-4" style="margin-top: 50px">
+    <div class="row section1 mb-4">
       <!-- Search + filter -->
-      <div class="col-12 col-md-8 d-flex" style="gap: 16px">
+      <div class="col-lg-8 col-md-6 col-sm-12 d-flex gap-4">
         <div class="search-bar flex-grow-1">
           <div class="position-relative search-bar-box">
-            <input
-              type="text"
-              class="form-control search-control"
-              placeholder="Type to search..."
-            />
-            <span class="position-absolute top-50 search-show translate-middle-y"
-              ><i class="bx bx-search"></i
-            ></span>
-            <span class="position-absolute top-50 search-close translate-middle-y"
-              ><i class="bx bx-x"></i
-            ></span>
+            <input type="text" class="form-control search-control ps-5" placeholder="Type to search..." />
+            <span class="position-absolute top-50 search-show translate-middle-y"><i
+                class="fa-solid fa-magnifying-glass px-3"></i></span>
+            <span class="position-absolute top-50 search-close translate-middle-y">
+              <!-- <i class="fa-solid fa-circle-xmark"></i> -->
+            </span>
           </div>
         </div>
-        <button
-          class="btn btn-outline-secondary d-flex align-items-center justify-content-center"
-          style="width: 36px; height: 36px"
-        >
-          <img src="/src/assets/img/loc.png" alt="filter" />
+        <button class="btn btn-outline-success d-flex align-items-center justify-content-center">
+          <i class="fa-solid fa-filter"></i>
         </button>
       </div>
-
       <!-- Tag -->
-      <div class="col-12 col-md-4 d-flex justify-content-end" style="gap: 12px">
-        <button
-          v-for="tag in tags"
-          :key="tag"
-          type="button"
-          class="btn btn-light tag-btn"
-          :class="{ active: selectedTag === tag }"
-          @click="selectTag(tag)"
-        >
-          {{ tag }}
-        </button>
+      <div class="col-lg-4 col-md-6 col-sm-12">
+        <div class="row">
+          <div class="col-lg-4 col-md-6 col-sm-4 ">
+            <button class="btn btn-outline-success w-100">Landscape</button>
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-4 ">
+            <button class="btn btn-outline-success w-100">Portrait</button>
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-4 ">
+            <button class="btn btn-outline-success w-100">Folk</button>
+
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- ========== Banner ========== -->
+    <!-- ========== Carousel ========== -->
     <div class="row mb-4">
       <div class="col-12">
-        <img
-          src="/src/assets/img/3.png"
-          alt="banner"
-          class="img-fluid w-100 rounded"
-          style="height: 300px"
-        />
+        <div id="carouselExampleIndicators" class="carousel slide">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+              aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+              aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+              aria-label="Slide 3"></button>
+          </div>
+          <div class="carousel-inner rounded-3 overflow-hidden">
+            <div class="carousel-item active">
+              <img src="https://i.pinimg.com/1200x/1b/08/af/1b08af4eab12bd921dc3541ccf6a10b1.jpg" class="d-block w-100"
+                style="height: 350px;" alt="..." loading="lazy">
+            </div>
+            <div class="carousel-item">
+              <img src="https://i.pinimg.com/736x/0a/20/fc/0a20fcc7bfacc5a20151f9e791e6b0f8.jpg" class="d-block w-100"
+                style="height: 350px;" alt="..." loading="lazy">
+            </div>
+            <div class="carousel-item">
+              <img src="https://i.pinimg.com/736x/00/a4/eb/00a4eb0eca9d3ac72ff6ca2e7421e825.jpg" class="d-block w-100"
+                style="height: 350px;" alt="..." loading="lazy">
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+        <!-- <img src="/src/assets/img/3.png" alt="banner" class="img-fluid w-100 rounded" style="height: 300px" /> -->
       </div>
     </div>
 
     <!-- ========== Tác phẩm nổi bật ========== -->
     <div class="row">
-      <h5 class="fw-bold mb-3" style="color: #044a42">Tác phẩm nổi bật</h5>
-      <div class="col-12 col-md-6 col-lg-4 mb-4" v-for="item in filteredFeatured" :key="item.id">
-        <div class="card featured-card h-100 p-3 d-flex">
-          <div class="row w-100 g-2 align-items-center">
-            <div class="col-5 d-flex align-items-center">
-              <img :src="getImageUrl(item.imageUrl)" alt="thumb" class="rounded thumb img-fluid" />
+      <h5 class="fw-bold mb-3 text-success">Featured Artwork</h5>
+
+      <!-- Loading state -->
+      <!-- <div v-if="loading" class="col-12 text-center py-5">
+        <div class="spinner-border text-success" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <p class="mt-2 text-muted">Đang tải tác phẩm...</p>
+      </div> -->
+
+      <!-- Error state -->
+      <!-- <div v-else-if="error" class="col-12 text-center py-5">
+        <div class="alert alert-warning" role="alert">
+          <i class="fa-solid fa-exclamation-triangle me-2"></i>
+          {{ error }}
+        </div>
+      </div> -->
+
+      <!-- Content -->
+      <template v-for="item in featuredList" :key="item.id">
+        <div class="col-12 col-md-6 col-lg-4 mb-4 d-flex">
+          <div class="card w-100">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-4 d-flex align-items-center pe-lg-0">
+                  <img :src="item.avtArtwork" alt="thumb" class="w-100 img-thumbnail img-art" loading="lazy" />
+                </div>
+
+                <div class="col-8 d-flex flex-column gap-2">
+                  <p class="m-0 fw-bold">
+                    {{ item.title }}
+                  </p>
+                  <p class="m-0 fw-bold">
+                    <!-- {{ item.owner.username }} -->
+                  </p>
+                  <p class="m-0">
+                    {{ item.description }}
+                  </p>
+
+                  <button class="btn btn-outline-success mt-auto">View Details</button>
+                </div>
+              </div>
             </div>
 
-            <div class="col-7 d-flex flex-column justify-content-start text-start">
-              <p class="mb-1 fw-bold text-truncate" style="font-size: 16px; color: #044a42">
-                {{ item.title }}
-              </p>
-              <p class="mb-2 text-truncate">
-                {{ item.description }}
-              </p>
-
-              <button class="btn btn-outline-success mt-auto">Xem chi tiết</button>
-            </div>
           </div>
         </div>
-      </div>
+      </template>
+
     </div>
 
     <!-- Danh sách buổi đấu giá  -->
     <div class="row">
-      <h5 class="fw-bold mb-3" style="color: #044a42">Phòng đấu giá hot</h5>
+      <h5 class="fw-bold mb-3 text-success">Hot Auction Room</h5>
 
       <!-- Card đấu giá -->
-      <div class="col-12 col-md-6 col-lg-3 mb-4" v-for="auction in hotAuctions" :key="auction.id">
-        <div class="card shadow-sm h-100 border-0">
-          <!-- Ảnh + trạng thái -->
-          <div class="position-relative">
+      <div class="col-lg-3 col-md-6 col-12 mb-4" v-for="auction in hotAuctions" :key="auction.id">
+        <div class="card p-0 overflow-hidden">
+          <div class="p-0 position-relative">
             <img
-              :src="auction.image"
-              class="card-img-top rounded-top"
-              alt="auction item"
-              style="height: 160px; object-fit: cover"
-            />
+              :src="auction.imageAuctionRoom"
+              class="img-auction" alt="" loading="lazy">
             <!--  trạng thái -->
-            <span
-              class="badge position-absolute top-0 start-0 m-2 px-2 py-1 d-flex align-items-center"
-              :class="auction.badgeClass"
-              style="font-size: 12px"
-            >
-              <span
-                v-if="auction.status === 'LIVE'"
-                class="d-inline-block rounded-circle bg-light me-2 circle-8-about"
-              ></span>
-              {{ auction.status }}
-            </span>
+            <div v-if="auction.status === 1" class="badge-live d-flex align-items-center gap-2">
+              <i class="fa-solid fa-circle fa-sm fw-bold text-white"></i>
+              <p class="m-0 fw-bold fa-sm  text-white">LIVE</p>
+            </div>
+            <span class="badge position-absolute top-0 end-0 m-3 bg-success px-3">12:35</span>
+            <span class="badge position-absolute bottom-0 end-0 m-3 bg-success">{{ auction.memberIds.length }}
+              bidders</span>
 
-            <!-- Thời gian -->
-            <span class="badge position-absolute top-0 end-0 m-2 time" style="font-size: 12px">
-              {{ auction.time }}
-            </span>
-
-            <!-- người đấu giá -->
-            <span class="badge position-absolute bottom-0 end-0 m-2 amount"
-              >{{ auction.bidders }} bidders</span
-            >
           </div>
 
           <!-- Nội dung card -->
-          <div class="card-body d-flex flex-column">
-            <p class="fw-bold mb-1 text-title-home">
-              {{ auction.title }}
-            </p>
-            <p class="mb-2 text-muted text-des-home">
-              {{ auction.description }}
-            </p>
-
-            <!-- Dòng thông tin -->
-            <div class="d-flex justify-content-between mb-1" style="font-size: 13px">
-              <div class="d-flex flex-column">
-                <span class="fw-bold">Current product</span>
-                <span class="">{{ auction.currentProduct }}</span>
-              </div>
-
-              <div class="d-flex flex-column align-items-end">
-                <span class="fw-bold">High Bid</span>
-                <span class="">{{ auction.highBid }}</span>
-              </div>
+          <div class="card-body d-flex flex-column gap-3">
+            <div class="d-flex flex-column gap-1">
+              <p class="fw-bold m-0 text-success fs-5"> {{ auction.roomName }} </p>
+              <p class="m-0"> {{ auction.description }} </p>
             </div>
 
+            <!-- Dòng thông tin -->
+            <div class="d-flex justify-content-between mb-1">
+              <div class="d-flex flex-column gap-1">
+                <p class="fw-bold m-0">Current product</p>
+                <!-- <p class="m-0">Product {{ auction.numberOfArtwork }} of 10</p> -->
+              </div>
+
+              <div class="d-flex flex-column gap-1 text-end">
+                <p class="fw-bold m-0">High Price</p>
+                <!-- <p class="m-0">{{ auction.artwork.currentPrice }}</p> -->
+              </div>
+            </div>
+            <button class="btn btn-success">Join AuctAuction</button>
             <!-- Nút -->
-            <button
-              class="btn btn-sm w-100 mt-auto"
-              :class="auction.buttonClass"
-              :style="
-                auction.buttonClass === 'btn-outline-success'
-                  ? 'background-color: #044a42; border-color: #044a42; color: white'
-                  : 'border-color: #044a42; color: #044a42; background-color: #fff'
-              "
-            >
+            <!-- <button class="btn btn-sm w-100 mt-auto" :class="auction.buttonClass" :style="auction.buttonClass === 'btn-outline-success'
+              ? 'background-color: #044a42; border-color: #044a42; color: white'
+              : 'border-color: #044a42; color: #044a42; background-color: #fff'
+              ">
               {{ auction.buttonText }}
-            </button>
+            </button> -->
           </div>
         </div>
       </div>
@@ -317,67 +186,61 @@ export default {
   </div>
 </template>
 
-<style scoped>
-.bx {
-  font-family: "boxicons" !important;
-  font-weight: normal;
-  font-style: normal;
-  font-variant: normal;
-  line-height: inherit;
-  display: inline-block;
-  text-transform: none;
-  speak: none;
-  -webkit-font-smoothing: antialiased;
-}
-/*
-.tag-btn {
-  width: 120px;
-  height: 36px;
-  background-color: white;
-  border: 1px solid #044a42;
-  text-align: center;
-  font-size: 13px;
-}
-.card {
-  border-radius: 10px;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) !important;
-}
+<script>
+import axios from "axios";
 
-.amount,
-.time {
-  background-color: #044a42;
-}
-.thumb {
-  width: 140px;
-  height: 100px;
-  object-fit: cover;
-  display: flex;
-  align-self: center;
-}
+export default {
+  // name: "ClientHome",
+  data() {
+    return {
+      featuredList: {},
+      loading: false,
+      error: null,
+      hotAuctions: [],
+    };
+  },
 
-.desc {
-  font-size: 13px;
-  color: #555;
-  overflow-wrap: break-word;
-  word-break: break-word;
-  white-space: normal;
+  mounted() {
+    this.fetchFeatured();
+    this.fetchSixRoomFeatured();
+  },
 
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
+  methods: {
 
-.form-control:focus {
-  box-shadow: 0 0 2 0.25rem rgba(4, 72, 64, 1) !important;
-}
-.circle-8-about {
-  width: 8px;
-  height: 8px;
-}
-.text-title-home {
-  color: #044a42;
-}
-.text-des-home {
-  font-size: 13px;
-  color: #044a42;
-} */
-</style>
+
+    fetchFeatured() {
+      this.loading = true;
+      axios
+        .get("http://localhost:8081/api/artwork/featured")
+        .then((res) => {
+          this.featuredList = res.data;
+          console.log(this.featuredList);
+
+        })
+        .catch((err) => {
+          this.error = err.message;
+        });
+    },
+    fetchSixRoomFeatured() {
+      this.loading = true;
+      axios
+        .get("http://localhost:8081/api/auctionroom/featuredAuctionRoom")
+        .then((res) => {
+          this.hotAuctions = res.data;
+          console.log("room", this.hotAuctions);
+
+        })
+        .catch((err) => {
+          this.error = err.message;
+        });
+    },
+
+  },
+
+
+};
+</script>
+
+
+
+<style></style>

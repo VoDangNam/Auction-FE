@@ -113,7 +113,10 @@ export default {
       showRePassword: false,
       rememberMe: false,
 
-      user: {},
+      user: {
+        email: "",
+        password: "",
+      },
 
     }
   },
@@ -125,34 +128,37 @@ export default {
       axios
         .post("http://localhost:8081/login", this.user)
         .then((res) => {
-          console.log('Login response:', res.data);
+          if (res.data.status == 1) {
+            this.$toast.success(res.data.message);
+            console.log(res.data);
 
-          // Kiểm tra response có chứa user không
-          if (res.data) {
-            // Lưu token vào localStorage
-            localStorage.setItem("authToken", res.data);
-
-            this.$toast.success("Đăng nhập thành công");
-
-            // Reset form
+            localStorage.setItem("token", res.data.token);
             this.user = {
               email: "",
               password: "",
             };
-
-            // Chuyển hướng đến trang chủ client
             this.$router.push('/client/home');
+
           } else {
-            this.$toast.error("Lỗi đăng nhập - User không tồn tại");
-            console.log('No user in response:', res.data);
+            this.$toast.error(res.data.message);
+            console.log(res.data);
           }
+
         })
-        .catch((res) => {
-          const list = Object.values(res.response.data.errors);
-          list.forEach((v, i) => {
-            this.$toast.error(v[0]);
-          });
-        })
+        .catch((err) => {
+          if (err.response && err.response.data) {
+            if (err.response.data.errors) {
+              const list = Object.values(err.response.data.errors);
+              list.forEach((v) => {
+                this.$toast.error(v[0]);
+              });
+            } else {
+              this.$toast.error(err.response.data.message || "Login failed");
+            }
+          } else {
+            this.$toast.error("Server error");
+          }
+        });
     },
 
     togglePassword() {

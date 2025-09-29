@@ -1,7 +1,7 @@
 <template>
   <footer class="footer">
     <div class="row m-5">
-      <div class="col-lg-5 ">
+      <div class="col-lg-5 col-md-12 col-sm-12 mb-5 m-lg-0">
         <div class="footer-logo">
           <h3 class="fw-bold mb-3">
             <img src="../../../assets/img/Logo_AA.png" class="imgLogoFooter me-3" alt="">
@@ -18,7 +18,7 @@
         </div>
       </div>
 
-      <div class="col-lg-2">
+      <div class="col-lg-2 col-md-4 col-sm-6">
         <div class="row">
           <div class="col-lg-12 mb-4">
             <h4 class="fw-bold">Navigation</h4>
@@ -37,7 +37,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-2">
+      <div class="col-lg-2 col-md-4 col-sm-6 mt-4 mt-sm-0">
         <div class="row">
           <div class="col-lg-12 mb-4">
             <h4 class="fw-bold">Support</h4>
@@ -57,8 +57,8 @@
         </div>
       </div>
 
-      <div class="col-lg-3 d-flex flex-column">
-        <h4 class="fw-bold mb-4">Theo dõi chúng tôi</h4>
+      <div class="col-lg-3 col-md-4 d-flex flex-column mt-4 m-md-0">
+        <h4 class="fw-bold mb-4">Follow us</h4>
         <div class="social-links">
           <a href="#" class="social-link"><i class="bi bi-facebook fa-lg"></i></a>
           <a href="#" class="social-link"><i class="bi bi-twitter fa-lg"></i></a>
@@ -77,7 +77,7 @@
 
     <div class="footer-bottom py-2">
       <div class="footer-bottom-content mx-5">
-        <p>&copy; 2025 ArtAuction. All rights reserved.</p>
+        <p class="m-0">&copy; 2025 ArtAuction. All rights reserved.</p>
         <div class="footer-bottom-links">
           <a href="#privacy">Privacy Policy</a>
           <a href="#cookies">Cookie Management</a>

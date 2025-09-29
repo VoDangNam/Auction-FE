@@ -16,8 +16,12 @@ body,
   /* padding: 2rem; */
   font-weight: normal;
   font-family: "Montserrat", sans-serif;
-  font-size: 16px;
+  /* font-size: 16px; */
 }
+
+/* p{
+  font-size: 15px;
+} */
 
 a,
 .green {
@@ -104,7 +108,8 @@ a,
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 12px;
+  padding-top: 12px;
+  background-color: #F0F9F9;
 
   position: sticky;
   top: 0;
@@ -113,7 +118,7 @@ a,
 }
 
 .page-wrapper {
-  flex: 1 1 auto;
+  /* flex: 1 1 auto; */
   width: 100%;
 }
 
@@ -130,13 +135,15 @@ a,
   position: relative;
   transition: all 0.3s ease;
   display: block;
-  padding: 0.2rem 1rem;
+  padding: 0 1rem;
   font-weight: 700 !important;
+    font-size: 18px !important;
+
 }
 
 .nav-link.active {
   color: var(--aa-success) !important;
-  /* font-weight: 700; */
+  font-weight: 700;
 }
 
 /* Dấu gạch dưới cho trang active */
@@ -341,4 +348,12 @@ a,
 
 .footer-bottom-links a:hover {
   color: var(--footer-text-color);
+}
+
+.dropdown-notification{
+  height: 50px;
+  width: 50px;
+}
+.dropdown-menu.dropdown-menu-lg {
+  min-width: 350px !important;
 }

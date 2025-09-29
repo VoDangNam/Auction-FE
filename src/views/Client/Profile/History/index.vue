@@ -30,7 +30,7 @@
     <template v-for="(v, k) in list" :key="k">
       <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
         <div class="card p-0">
-          <div class="badge p-0">
+          <!-- <div class="badge p-0">
             <img src="../../../../assets/img/user_test.jpg" class="img-auction" alt="">
             <div class="badge-live d-flex align-items-center gap-2"><i
                 class="fa-solid fa-circle fa-sm fw-bold text-white"></i>
@@ -39,21 +39,42 @@
             <div class="badge-success1 d-flex align-items-center gap-2">12:35</div>
             <div class="badge-success2 d-flex align-items-center gap-2">12:35</div>
 
+          </div> -->
+          <div class="p-0 position-relative">
+            <img :src="v.imageAuctionRoom" class="img-auction" alt="" loading="lazy">
+            <div v-if="v.status === 1" class="badge-live d-flex align-items-center gap-2">
+              <i class="fa-solid fa-circle fa-sm fw-bold text-white"></i>
+              <p class="m-0 fw-bold fa-sm  text-white">LIVE</p>
+            </div>
+            <span class="badge position-absolute top-0 end-0 m-3 bg-success px-3">12:35</span>
+            <span class="badge position-absolute bottom-0 end-0 m-3 bg-success">{{ v.memberIds.length }}
+              bidders</span>
+
           </div>
 
-          <div class="card-body">
-            <h5 class="fw-bold text-success">{{ v.roomName }}</h5>
-            <p class="card-text">{{ v.decription }}</p>
-            <div class="d-flex justify-content-between">
-              <p class="m-0 text-secondary">Current product</p>
-              <p class="m-0 text-secondary">High Bid</p>
+          <div class="card-body d-flex flex-column gap-3">
+            <div class="d-flex flex-column gap-1">
+              <p class="fw-bold m-0 text-success fs-5"> {{ v.roomName }} </p>
+              <p class="m-0"> {{ v.description }} </p>
             </div>
-            <div class="d-flex justify-content-between">
-              <p class="fw-bold">Product 7 of {{ v.numberOfArtwork }}</p>
-              <p class="fw-bold">$ {{ v.currentPrice }}</p>
+
+            <!-- Dòng thông tin -->
+            <div class="d-flex justify-content-between mb-1">
+              <div class="d-flex flex-column gap-1">
+                <p class="fw-bold m-0">Current product</p>
+                <!-- <p class="m-0">Product {{ auction.numberOfArtwork }} of 10</p> -->
+              </div>
+
+              <div class="d-flex flex-column gap-1 text-end">
+                <p class="fw-bold m-0">High Price</p>
+                <!-- <p class="m-0">{{ auction.artwork.currentPrice }}</p> -->
+              </div>
             </div>
-            <button class="btn btn-success w-100 fw-bold">Join ArtAuction</button>
+            <button class="btn btn-success">Join AuctAuction</button>
+
           </div>
+
+
         </div>
       </div>
     </template>
@@ -248,12 +269,11 @@
 <script>
 import axios from 'axios';
 
-// import { Alert } from 'bootstrap/dist/js/bootstrap.bundle.min';
 
 export default {
   data() {
     return {
-      list: {},
+      list: [],
     }
   },
   mounted() {
@@ -262,24 +282,22 @@ export default {
   methods: {
     loadData() {
       axios
-        .get('http://localhost:8081/getAuctionRooms/u001', {
-          // headers: {
-          //     Authorization: 'Bearer ' + localStorage.getItem("key_admin")
-          // }
+        .get('http://localhost:8081/api/auctionroom/history', {
+          headers: {
+            Authorization: 'Bearer ' + localStorage.getItem("token")
+          }
         })
         .then((res) => {
           this.list = res.data;
-          console.log(list);
+          console.log("data loaded history", this.list);
 
         })
-         .catch((err) => {
-        console.error(err);
-      });
+        .catch((err) => {
+          console.error(err);
+        });
     },
 
   }
 }
 </script>
-<style></style>
-
 <style></style>

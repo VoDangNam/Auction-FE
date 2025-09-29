@@ -87,12 +87,31 @@ const routes = [
       },
 
     ],
-    // beforeEnter: checkUser,
+  },
+  {
+    path: '/client/invoice',
+    name: 'invoice',
+    component: () => import('../views/Client/Invoice/index.vue'),
+    meta: { layout: "client" },
+    beforeEnter: checkUser,
+
   },
 ];
 
 const router = createRouter({
   history: createWebHistory(),
   routes: routes,
+});
+
+// Chuyển hướng người dùng đã đăng nhập khỏi các trang dành cho khách
+router.beforeEach((to, from, next) => {
+  const token = localStorage.getItem("token");
+  const isGuestPage = to.path === "/" || to.path === "/login" || to.path === "/register";
+
+  if (token && isGuestPage) {
+    return next("/client/home");
+  }
+
+  return next();
 });
 export default router;

@@ -1,11 +1,13 @@
-// import './assets/css/main.css'
+// Tối ưu: Import CSS theo thứ tự ưu tiên
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './assets/css/bootstrap-override.css'
+import './assets/css/main.css'
 
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
-import './assets/css/main.css'
+
+// Lazy load Font Awesome - chỉ load khi cần
 import '@fortawesome/fontawesome-free/css/fontawesome.min.css'
 import '@fortawesome/fontawesome-free/css/solid.min.css'
 import 'bootstrap-icons/font/bootstrap-icons.css'

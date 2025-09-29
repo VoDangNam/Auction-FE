@@ -62,7 +62,7 @@
                 </div>
                 <div
                   class="col-lg-3 col-md-6 col-sm-12 d-flex flex-md-column justify-content-xs-between justify-content-sm-between gap-2 mb-lg-0 mb-3">
-                  <p class="m-0 fw-bold">Starting Bid</p>
+                  <p class="m-0 fw-bold">Starting Price</p>
                   <p class="m-0 ">$12,000</p>
                 </div>
                 <div
@@ -81,28 +81,33 @@
       </div>
 
     </div>
+
     <template v-for="(v, k) in listmanage" :key="k">
-      <div class="col-lg-12">
+      <div class="col-lg-12 mb-3">
         <div class=" card">
           <div class="card-body">
             <div class="row">
               <div class="col-lg-4 col-md-12 col-sm-12 d-flex align-items-center">
-                <img :src="v.artwork.imageUrl" class="img-thumbnail img-square" alt="...">
+                <img :src="v.avtArtwork" class="img-thumbnail img-square" alt="...">
                 <!-- <img src="https://picsum.photos/200/300" class="img-thumbnail img-square" alt="..."> -->
               </div>
               <div class="col-lg-8">
                 <div class="row mt-3">
                   <div class="col-lg-12 col-md-12 col-sm-12 d-flex flex-column gap-3 ">
                     <div class="d-flex justify-content-between align-items-center">
-                      <h5 class="m-0 fw-bold">{{ v.artwork.title }}</h5>
+                      <h5 class="m-0 fw-bold">{{ v.title }}</h5>
                       <div
                         class="m-0 alert alert-accent2 border-start border-0 border-3 border-success fw-bold px-5 py-1"
                         role="alert">Won</div>
                       <!-- <div class="m-0 alert alert-danger border-start border-0 border-3 border-danger fw-bold px-5 py-1" role="alert">Lost</div> -->
                     </div>
                     <div class="d-flex justify-content-between align-items-center">
-                      <p class="m-0 ">{{ v.artwork.owner.username }}</p>
-                      <p class="m-0 text-success fw-bold">My Bid: <span class="ps-3 fw-bold">$15,750</span></p>
+                      <p class="m-0 ">
+                        {{ v.ownerName }}
+                      </p>
+                      <p class="m-0 text-success fw-bold">My Bid:
+                        <span class="ps-3 fw-bold">${{ v.myLatestBidAmount }}</span>
+                      </p>
                     </div>
                     <hr>
                   </div>
@@ -119,13 +124,13 @@
                   </div>
                   <div
                     class="col-lg-3 col-md-6 col-sm-12 d-flex flex-md-column justify-content-xs-between justify-content-sm-between gap-2 mb-lg-0 mb-3">
-                    <p class="m-0 fw-bold">Starting Bid</p>
-                    <p class="m-0 ">$ {{ v.startingPrice }}</p>
+                    <p class="m-0 fw-bold">Starting Price</p>
+                    <p class="m-0 ">$ {{ v.startedPrice }}</p>
                   </div>
                   <div
                     class="col-lg-3 col-md-6 col-sm-12 d-flex flex-md-column justify-content-xs-between justify-content-sm-between gap-2 mb-lg-0 mb-3">
                     <p class="m-0 fw-bold">Final Price</p>
-                    <p class="m-0 ">$ {{ v.currentPrice }}</p>
+                    <!-- <p class="m-0 ">$ {{ v.currentPrice }}</p> -->
                   </div>
 
                 </div>
@@ -159,10 +164,10 @@ export default {
   methods: {
     loadData() {
       axios
-        .get('http://localhost:8081/getAuctionRooms/u001', {
-          // headers: {
-          //     Authorization: 'Bearer ' + localStorage.getItem("key_admin")
-          // }
+        .get('http://localhost:8081/api/artwork/my-artworks', {
+          headers: {
+             Authorization: 'Bearer ' + localStorage.getItem("token")
+          }
         })
         .then((res) => {
           this.listmanage = res.data;

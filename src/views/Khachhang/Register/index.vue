@@ -78,20 +78,6 @@
                 <div class="d-flex flex-column align-items-center gap-3 mt-2">
                   <button class="btn btn-success fw-bold w-100" @click="DangKy()">Sign Up</button>
 
-                  <!-- Divider -->
-                  <!-- <div class="d-flex align-items-center w-100">
-                    <hr class="flex-grow-1 border border-success">
-                    <span class="px-3 text-muted">or</span>
-                    <hr class="flex-grow-1 border border-success">
-                  </div> -->
-
-                  <!-- Google Register Button -->
-                  <!-- <button
-                    class="btn btn-google border-2 border-success w-100 d-flex align-items-center justify-content-center gap-2"
-                    @click="registerWithGoogle">
-                    <i class="fab fa-google"></i>
-                    <span>Continue with Google</span>
-                  </button> -->
 
                   <p class="m-0">Already have an account?
                     <router-link to="/login" href="#" class="text-success fw-bold text-decoration-none">Sign
@@ -126,19 +112,24 @@ export default {
     DangKy() {
       axios.post('http://localhost:8081/register', this.tai_khoan)
         .then(response => {
-          console.log(response.data);
-          // this.$toast.success(res.data.message);
-          this.$toast.success("Registration successful!");
+          if (response.data.status == 1) {
+            this.$toast.success(response.data.message);
+            console.log(response.data);
+             this.$router.push('/login');
 
-          // alert("Registration successful!");
-          this.$router.push('/login');
+          } else {
+            this.$toast.error(response.data.message);
+            console.log(response.data);
+          }
+
         })
-        .catch(error => {
-          this.$toast.error("Registration failed. Please try again.");
+        .catch((res) => {
+          const list = Object.values(res.response.data.errors);
+          list.forEach((v) => {
+            this.$toast.error(v[0]);
+          });
+        })
 
-          console.error(error);
-          // alert("Registration failed. Please try again.");
-        });
     },
 
     registerWithGoogle() {

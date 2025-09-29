@@ -42,7 +42,7 @@
   </div>
 
   <!-- nội dung submenu -->
-  <div class="col-lg-9 col-md-12 mt-xs-4 m-lg-0">
+  <div class="col-lg-9 col-md-12">
     <router-view />
   </div>
 </template>

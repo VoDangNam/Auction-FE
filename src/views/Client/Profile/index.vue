@@ -19,19 +19,19 @@
               </div>
 
               <div class="col-lg-8 col-md-12 d-flex flex-column">
-                <h4 class="fw-bold text-success mt-auto pb-3">{{ userData[0]?.user?.username }}</h4>
+                <h4 class="fw-bold text-success mt-auto pb-3">{{ userData.username }}</h4>
                 <div class="mt-auto d-flex flex-column gap-3">
                   <div class="d-flex justify-content-between align-items-center">
                     <p class="m-0 fw-bold">Phone</p>
-                    <p class="m-0 text-success">{{ userData[0]?.user?.username }}</p>
+                    <p class="m-0 text-success">{{ userData.phonenumber }}</p>
                   </div>
                   <div class="d-flex justify-content-between align-items-center">
                     <p class="m-0 fw-bold">Email</p>
-                    <p class="m-0 text-success">{{ userData[0]?.user?.email }}</p>
+                    <p class="m-0 text-success">{{ userData.email }}</p>
                   </div>
                   <div class="d-flex justify-content-between align-items-center">
                     <p class="m-0 fw-bold">Citizen identification</p>
-                    <p class="m-0 text-success">0123456789</p>
+                    <p class="m-0 text-success">{{ userData.phonenumber }}</p>
                   </div>
                   <div class="d-flex justify-content-between align-items-center">
                     <p class="m-0 fw-bold">Date of birth</p>
@@ -142,14 +142,14 @@ export default {
   methods: {
     loadUserData() {
       axios
-        .get('http://localhost:8081/getAuctionRooms/u001', {
-          // headers: {
-          //     Authorization: 'Bearer ' + localStorage.getItem("key_admin")
-          // }
+        .get('http://localhost:8081/api/user/info', {
+          headers: {
+              Authorization: 'Bearer ' + localStorage.getItem("token")
+          }
         })
         .then((res) => {
           this.userData = res.data;
-          // console.log(this.userData);
+           console.log(this.userData);
 
         })
          .catch((err) => {

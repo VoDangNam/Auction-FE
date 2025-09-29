@@ -4,7 +4,7 @@ export default function (from, to, next) {
   axios
     .get("http://localhost:8081/getEmailAndUsernameFromToken", {
       headers: {
-        Authorization: 'Bearer ' + localStorage.getItem("authToken")
+        Authorization: 'Bearer ' + localStorage.getItem("token")
       }
     })
     .then((res) => {
@@ -21,7 +21,7 @@ export default function (from, to, next) {
     })
     .catch((error) => {
       console.error("Auth check failed:", error);
-      localStorage.removeItem("authToken");
+      localStorage.removeItem("token");
       localStorage.removeItem("name_kh");
       localStorage.removeItem("email_kh");
       localStorage.removeItem("check_kh");

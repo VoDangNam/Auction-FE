@@ -36,44 +36,13 @@
   z-index: 1;
 }
 
-/* .card-acc {
-  width: 90%;
-  height: 80vh;
-  max-width: 1000px;
-  min-height: 80vh;
-  margin: 0 auto;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  border-radius: 15px;
-  overflow: hidden;
-  position: relative;
-  z-index: 10;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-} */
+
 .card-acc {
   z-index: 10;
 }
-/* @media (max-width: 768px) {
-  .card-acc {
-    width: 95%;
-    height: 85vh;
-    margin: 10px auto;
-  }
-}
 
-@media (max-width: 576px) {
-  .card-acc {
-    width: 98%;
-    height: 80vh;
-    margin: 5px auto;
-  }
-} */
 
 .bg-gradient-card {
-  /* background: linear-gradient(135deg, #ffffff 0%, #a8e6cf 25%, #2ecc71 50%, #0a6b5f 75%, #044A42 100%); */
-  /* background: linear-gradient(135deg, #ffffff 0%, #a8e6cf 25%, #20b2aa 50%, #0a6b5f 75%, #044A42 100%); */
-  /* background: linear-gradient(135deg, #ffffff 0%, #a8e6cf 25%, #1ca085 50%, #0a6b5f 70%, #044A42 100%); */
-
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
   position: relative;
   overflow: hidden;
@@ -141,7 +110,6 @@
   transition: all 0.3s ease;
   background: transparent;
 
-  /* padding: 0 5px; */
 }
 
 .group-input input {
@@ -405,7 +373,12 @@
   aspect-ratio: 3/2; /* height = 2/3 width */
   object-fit: cover;
 }
-
+/* .header-sub {
+  position: sticky;
+  top: 110px;
+  z-index: 99;
+  height: fit-content;
+} */
 
 
 
@@ -415,13 +388,10 @@
 
 .img-auction {
   width: 100%;
-  height: 230px;
+  height: 200px;
   object-fit: cover;
 }
-.badge{
-  position: relative;
 
-}
 .badge-live {
   position: absolute;
   top: 10px;
@@ -430,7 +400,7 @@
   color: #fff;
   font-size: 12px;
   font-weight: 700;
-  padding: 5px 18px;
+  padding: 8px 10px;
   border-radius: 8px;
   display: inline-flex;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
@@ -460,27 +430,25 @@
   border-radius: 8px;
   display: inline-flex;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-
+}
+/* ===========================================
    CSS CHO HOME Client - Home/index.vue
    =========================================== */
 
-.tag-btn {
+/* .tag-btn {
   width: 120px;
   height: 36px;
   background-color: white;
   border: 1px solid var(--aa-success);
   text-align: center;
   font-size: 13px;
-}
+} */
 .card {
   border-radius: 10px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) !important;
 }
 
-.amount,
-.time {
-  background-color: var(--aa-success);
-}
+
 .thumb {
   object-fit: cover !important;
   max-width: 100% !important;
@@ -505,13 +473,8 @@
   width: 8px;
   height: 8px;
 }
-.text-title-home {
-  color: var(--aa-success);
-}
-.text-des-home {
-  font-size: 13px;
-  color: var(--aa-success);
-}
+
+
 
 /* ===========================================
    CSS CHO Home KHACH HANG - Home/index.vue
@@ -730,6 +693,13 @@
 }  */
 
 /* ===========================================
+   CSS CHO Home - Home/index.vue
+   =========================================== */
+.img-art{
+  height: 150px !important;
+}
+
+/* ===========================================
    CSS CHO AboutUs - AboutUs/index.vue
    =========================================== */
 
@@ -806,5 +776,49 @@ h2 {
 }
 .pay-status-inv {
   font-size: 12px;
+}
 
+/* ===========================================
+   CSS CHO NOTIFICATION - components/MenuClient.vue
+   =========================================== */
+
+/* .notification-dropdown::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  right: 20px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid white;
+} */
+.notification-icon {
+  width: 50px;
+  height: 50px;
+  border: 2px solid #044a42;
+}
+/* .create-muiten {
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid white;
+} */
+/* .muiten {
+  top: -8px;
+  right: 20px;
+} */
+/* .notification-dropdown {
+  top: 100%;
+  right: 0;
+  background: white;
+  border: 2px solid #044a42;
+  min-width: 350px;
+  max-width: 400px;
+  z-index: 1000;
+} */
+
+.img-invoice{
+  max-height: 150px;
 }
